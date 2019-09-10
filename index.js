@@ -1,24 +1,23 @@
-var spawn = require('child_process').spawn,
-  ansi = require('ansi-html-stream'),
-  fs = require('fs')
+const spawn = require('child_process').spawn
+// assuming the browser page is white
+const options = {
+  newline: true,
+  bg: '#fff',
+  fg: '#111',
+}
+const convert = new (require('ansi-to-html'))(options)
 
-var npm = spawn('node', ['./colors'], {
+const htmlStream = function htmlStream(stream) {
+  return stream.on('data', function(chunk) {
+    return process.stdout.write(convert.toHtml(chunk))
+  })
+}
+
+// force chalk to output ANSI colors
+const npm = spawn('node', ['./colors'], {
+  env: { ...process.env, FORCE_COLOR: '2' },
   cwd: process.cwd(),
 })
 
-var stream = ansi({ chunked: false }),
-  file = fs.createWriteStream('browserify.html', 'utf8')
-
-npm.stdout.pipe(stream)
-npm.stderr.pipe(stream)
-
-stream.pipe(
-  file,
-  { end: false },
-)
-
-stream.once('end', function() {
-  file.end('</pre>\n')
-})
-
-file.write('<pre>\n')
+npm.stdout.setEncoding('utf8')
+htmlStream(npm.stdout)
