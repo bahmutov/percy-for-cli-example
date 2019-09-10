@@ -5,15 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "demo": "node ./index > index.html"
+    "demo": "node ./index",
+    "demo-percy": "npx percy exec -- npm run demo"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ansi-to-html": "0.6.11"
+    "ansi-to-html": "0.6.11",
+    "axios": "0.19.0",
+    "got": "9.6.0"
   },
   "devDependencies": {
+    "@percy/script": "1.0.0",
     "chalk": "2.4.2",
     "prettier": "1.18.2"
   }
