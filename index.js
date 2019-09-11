@@ -18,17 +18,35 @@ const htmlStream = function htmlStream(stream) {
   })
 }
 
-// force chalk to output ANSI colors
-const npm = spawn('node', ['./colors'], {
-  env: { ...process.env, FORCE_COLOR: '2' },
-  cwd: process.cwd(),
-})
+// force child process to output ANSI colors
+// if possible using FORCE_COLOR
+// commonly used via https://github.com/chalk/supports-color
+// const child = spawn('node', ['./colors'], {
+const child = spawn(
+  'node',
+  ['./node_modules/.bin/mocha', './spec.js', '--reporter', 'spec'],
+  {
+    env: { ...process.env, FORCE_COLOR: '2' },
+    cwd: process.cwd(),
+  },
+)
 
-npm.stdout.setEncoding('utf8')
-npm.stdout.on('end', () => {
-  // console.log('npm stdout ended, html is')
-  // console.log(html)
-
+child.stdout.setEncoding('utf8')
+child.on('error', console.error)
+child.stdout.on('end', () => {
+  html =
+    `<!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8" />
+      </head>
+      <body>
+    ` +
+    html +
+    `
+    </body></html>
+  `
+  console.log(html)
   // post HTML to the Percy agent
   // follow "cy.request" code in
   // https://github.com/percy/percy-cypress/blob/master/lib/index.ts
@@ -46,4 +64,4 @@ npm.stdout.on('end', () => {
       throw e
     })
 })
-htmlStream(npm.stdout)
+htmlStream(child.stdout)
