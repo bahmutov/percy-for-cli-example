@@ -46,7 +46,7 @@ child.stdout.on('end', () => {
     `
     </body></html>
   `
-  console.log(html)
+  // console.log(html)
   // post HTML to the Percy agent
   // follow "cy.request" code in
   // https://github.com/percy/percy-cypress/blob/master/lib/index.ts
