@@ -46,22 +46,22 @@ child.stdout.on('end', () => {
     `
     </body></html>
   `
-  // console.log(html)
+  console.log(html)
   // post HTML to the Percy agent
   // follow "cy.request" code in
   // https://github.com/percy/percy-cypress/blob/master/lib/index.ts
   // and https://github.com/percy/percy-agent
-  const url = 'http://localhost:5338/percy/snapshot'
-  axios
-    .post(url, {
-      name: 'my example name',
-      url: 'http://localhost/example',
-      enableJavaScript: false,
-      domSnapshot: html,
-    })
-    .catch(e => {
-      console.error(e)
-      throw e
-    })
+  // const url = 'http://localhost:5338/percy/snapshot'
+  // axios
+  //   .post(url, {
+  //     name: 'my example name',
+  //     url: 'http://localhost/example',
+  //     enableJavaScript: false,
+  //     domSnapshot: html,
+  //   })
+  //   .catch(e => {
+  //     console.error(e)
+  //     throw e
+  //   })
 })
 htmlStream(child.stdout)
