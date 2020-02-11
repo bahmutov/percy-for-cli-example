@@ -2,6 +2,8 @@
 
 Confirms the output of CLI programs that use ANSI colors using [Percy.io](https://percy.io) online visual diffing service.
 
+Read the blog post [Visual diffing flow for your pretty CLI applications](https://glebbahmutov.com/blog/visual-diffing-for-CLI-apps/)
+
 **Note:** to push data to Percy requires API token. If we load the token using [as-a](https://github.com/bahmutov/as-a) then one can run the demo and send terminal output to Percy with commands
 
 ```shell
