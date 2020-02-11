@@ -4,4 +4,7 @@ describe('example', () => {
   it('works B', () => delay())
   it('works C', () => delay())
   it('skips D')
+  it('has brackets < and >', () => {
+    console.log('hello <there>!')
+  })
 })

@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "ansi-to-html": "0.6.11",
-    "axios": "0.19.0"
+    "axios": "0.19.0",
+    "escape-html": "1.0.3"
   },
   "devDependencies": {
     "@percy/script": "1.0.0",

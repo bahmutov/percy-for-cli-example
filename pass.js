@@ -11,6 +11,7 @@ const options = {
   fg: '#111',
 }
 const convert = new (require('ansi-to-html'))(options)
+const escape = require('escape-html')
 
 const start =
   `<!DOCTYPE html>
@@ -28,9 +29,10 @@ const start =
   `
 
 console.log(start)
+
 process.stdin.setEncoding('utf8')
 process.stdin.on('data', function(chunk) {
-  return process.stdout.write(convert.toHtml(chunk))
+  return process.stdout.write(convert.toHtml(escape(chunk)))
   // html += convert.toHtml(chunk)
 })
 process.stdin.on('end', () => {
