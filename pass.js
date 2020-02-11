@@ -17,6 +17,12 @@ const start =
     <html>
     <head>
       <meta charset="utf-8" />
+      <style>
+        body {
+          font-family: "Courier New", Courier, monospace;
+          padding: 0 1em;
+        }
+      </style>
     </head>
     <body>\n
   `
