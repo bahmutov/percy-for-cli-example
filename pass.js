@@ -6,7 +6,7 @@
 
 // assuming the browser page is white
 const options = {
-  newline: true,
+  newline: false,
   bg: '#fff',
   fg: '#111',
 }
@@ -22,10 +22,15 @@ const start =
         body {
           font-family: "Courier New", Courier, monospace;
           padding: 0 1em;
+          line-height: 1.4;
+        }
+        pre {
+          padding: 0 0;
+          margin: 0 0;
         }
       </style>
     </head>
-    <body>\n
+    <body><pre>\n
   `
 
 console.log(start)
@@ -33,8 +38,7 @@ console.log(start)
 process.stdin.setEncoding('utf8')
 process.stdin.on('data', function(chunk) {
   return process.stdout.write(convert.toHtml(escape(chunk)))
-  // html += convert.toHtml(chunk)
 })
 process.stdin.on('end', () => {
-  console.log('\n</body></html>')
+  console.log('\n</pre></body></html>')
 })

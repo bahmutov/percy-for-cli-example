@@ -19,6 +19,8 @@
   "devDependencies": {
     "@percy/script": "1.0.0",
     "chalk": "2.4.2",
+    "cli-table3": "0.5.1",
+    "console.table": "0.10.0",
     "mocha": "6.2.0",
     "prettier": "1.18.2"
   }
