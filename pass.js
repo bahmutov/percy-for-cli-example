@@ -27,6 +27,7 @@ const start =
         pre {
           padding: 0 0;
           margin: 0 0;
+          font-family: "Courier New", Courier, monospace;
         }
       </style>
     </head>
